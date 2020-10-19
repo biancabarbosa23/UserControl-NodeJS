@@ -23,8 +23,7 @@ module.exports = {
         email,
         password: encryptPassword(password),
         nivel: 1,
-        image:
-          'https://avatars1.githubusercontent.com/u/57002127?s=460&u=b74bf38cad22fe4dfb6a643aafcf9038343c6a26&v=4',
+        image: '',
       }
 
       const userId = await knex('users').insert(dataUserToCreate)

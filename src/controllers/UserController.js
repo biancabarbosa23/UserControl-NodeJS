@@ -1,4 +1,6 @@
 const knex = require('../database')
+const fs = require('fs')
+const path = require('path')
 
 const encryptPassword = require('../utils/encryptPassword')
 
@@ -52,7 +54,15 @@ module.exports = {
 
       if (data.password) data.password = encryptPassword(data.password)
 
-      await knex('users').where('id', id).update(data)
+      const oldUser = await knex('users').where('id', id).select('image')
+
+      if (oldUser[0].image !== '')
+        fs.unlinkSync(path.resolve(__dirname, '..', '..', oldUser[0].image))
+
+      await knex('users')
+        .where('id', id)
+        .update(data)
+        .update('image', req.file.path)
 
       const updatedUser = await knex('users').where('id', id).select('*')
 
