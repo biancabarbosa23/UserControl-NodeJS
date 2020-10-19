@@ -36,7 +36,7 @@ module.exports = {
 
       const user = await knex.select().table('users').where('id', id)
 
-      return res.json(user)
+      return res.json(user[0])
     } catch (err) {
       res.json({ message: 'Não foi possível listar o usuário' })
     }
@@ -57,18 +57,28 @@ module.exports = {
       const oldUser = await knex('users').where('id', id).select('image')
 
       if (oldUser[0].image !== '')
-        fs.unlinkSync(path.resolve(__dirname, '..', '..', oldUser[0].image))
+        fs.unlinkSync(
+          path.resolve(
+            __dirname,
+            '..',
+            '..',
+            'public',
+            'uploads',
+            'avatar',
+            oldUser[0].image
+          )
+        )
 
       await knex('users')
         .where('id', id)
         .update(data)
-        .update('image', req.file.path)
+        .update('image', req.file.filename)
 
       const updatedUser = await knex('users').where('id', id).select('*')
 
       updatedUser[0].password = undefined
 
-      return res.json({ updatedUser })
+      return res.json({ updatedUser: updatedUser[0] })
     } catch (err) {
       return res.json({ message: 'Não foi possível realizar a alteração' })
     }

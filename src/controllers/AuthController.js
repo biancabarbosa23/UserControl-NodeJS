@@ -55,9 +55,8 @@ module.exports = {
         return res.json({ message: 'Usuário desativado' })
 
       user[0].password = undefined
-
       return res.json({
-        user,
+        user: user[0],
         token: generateToken({ id: user[0].id, nivel: user[0].nivel }),
       })
     } catch (err) {
