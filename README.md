@@ -32,15 +32,15 @@ $ npm run dev
 
 ### Rotas
 
-- http://localhost:5000/login [POST](Fazer login no sistema com E-mail ou CPF)
+- http://localhost:3030/login [POST](Fazer login no sistema com E-mail ou CPF)
 
-- http://localhost:5000/register [POST](Criar uma conta no sistema com Nome, Cpf, E-mail e Senha)
+- http://localhost:3030/register [POST](Criar uma conta no sistema com Nome, Cpf, E-mail e Senha)
 
-- http://localhost:5000/users [GET](Busca todos funcionarios cadastrados, tem que possuir nível de acesso 999)
+- http://localhost:3030/users [GET](Busca todos funcionarios cadastrados, tem que possuir nível de acesso 999)
  
-- http://localhost:5000/user/:id [PUT](Atulizar unico usuários com ID)
+- http://localhost:3030/user/:id [PUT](Atulizar unico usuários com ID)
 
-- http://localhost:5000/user/:id [GET](Buscar unico usuario com ID)
+- http://localhost:3030/user/:id [GET](Buscar unico usuario com ID)
 
 
 ## Autores
